@@ -20,7 +20,6 @@ if "paging" in pages:
             count+=1
             print page["name"]
 
-            f.write(page["name"]
 
             # Attempt to make a request to the next page of data, if it exists.
         pages=requests.get(pages['paging']['next']).json()
