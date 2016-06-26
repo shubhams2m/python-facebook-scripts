@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import facebook
 import requests
 
-access_token = "EAACEdEose0cBAIEY2JMIHL3SI9t63tHWoBeL7Uq51RIL64mTNbh7R8JwRe8D65oqGOctA6MjZBxnUyLLqrlOZA8WzbtJ3vjYyZAt5zrZAlwrzluMK4eZA5MWoZCETgUEZAqEBVc87csqvWHr3Y0tdBfVwIWvkR0YUO1fOJHBjFmZCwZDZD"
+access_token = "EAACEdEose0cBADEQC2MnrmS0iZAVjbFEUbtI5KxNZBw0Tm4D4Xm7RQlx0I8pmOO2uS5VXzolZBc3Mtl9ABeZC5B2U23S3CPgnMrzPzHuHzko0e8iEHxWXBiIkadLpuk83pvL2SrYoZAZCLsMkKqRX1y5ZATUNeZB9kUMQqUj3xFZBrwZDZD"
 
 graph = facebook.GraphAPI(access_token)
 
@@ -16,6 +19,9 @@ if "paging" in pages:
         for page in pages["data"]:
             count+=1
             print page["name"]
+            f=open("a.txt",'a')
+            f.write(page["name"].encode('utf-8'))
+            f.write("\n")
             # Attempt to make a request to the next page of data, if it exists.
         pages=requests.get(pages['paging']['next']).json()
 
