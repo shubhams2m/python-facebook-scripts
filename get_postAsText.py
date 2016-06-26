@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
+## Get all your facebook posts as a text file.
+
 import facebook
 import requests
 
@@ -11,16 +13,16 @@ graph = facebook.GraphAPI(access_token)
 
 posts = graph.get_connections('me', 'posts')
 
-count = 0
+f = open("posts.txt", "w")
 
 
 while "next" in posts["paging"]:
         for post in posts["data"]:
             if "message" in post:
                 print post["message"]
-                f = open("posts.txt", "a")
+                
                 f.write((post["message"]).encode("utf-8"))
-                f.write("\n \n")
+                f.write("\n \n \n")
             # Attempt to make a request to the next page of data, if it exists.
         posts=requests.get(posts['paging']['next']).json()
 
@@ -29,6 +31,8 @@ while "next" in posts["paging"]:
 for post in posts["data"]:
     if "message" in post:
         print post["message"]
-        f = open("posts.txt", "a")
+
         f.write((post["message"]).encode("utf-8"))
-        f.write("\n \n")
+        f.write("\n \n \n")
+
+f.close()
