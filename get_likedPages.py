@@ -19,9 +19,9 @@ if "paging" in pages:
         for page in pages["data"]:
             count+=1
             print page["name"]
-            f=open("a.txt",'a')
-            f.write(page["name"].encode('utf-8'))
-            f.write("\n")
+
+            f.write(page["name"]
+
             # Attempt to make a request to the next page of data, if it exists.
         pages=requests.get(pages['paging']['next']).json()
 
